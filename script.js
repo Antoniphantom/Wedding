@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const audio = document.getElementById('bgmusic');
   const btn = document.getElementById('music-toggle');
-  let started = true;
+  let started = false; // <-- Este es el cambio más importante
 
   // URL actualizado del Apps Script
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrvn-Ti54kcMV7KvJNKu2NEwgMmC3HJymCCY9bXh775MJ67nK1qWpsWY21-Q6AU4kZ/exec";

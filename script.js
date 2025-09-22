@@ -3,6 +3,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('music-toggle');
   let started = false;
 
+  // URL actualizado del Apps Script
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTxjZZftHq_qnBfbbZQbJ65FRpn0ve1UEHlO4-zXVR6LS5TJE-jvq2DOeUn6i6qVou/exec";
+
+  // Confirmación de asistencia
+  const form = document.getElementById('confirmation-form');
+  const responseMsg = document.getElementById('response-msg');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      responseMsg.textContent = "Enviando confirmación...";
+      const data = new FormData(form);
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: data
+      })
+      .then(r => r.text())
+      .then(resp => {
+        if (resp.includes("OK") || resp.toLowerCase().includes("success")) {
+          responseMsg.textContent = "¡Confirmación recibida! Gracias por acompañarnos.";
+        } else {
+          responseMsg.textContent = "Ocurrió un error. Intenta de nuevo más tarde.";
+        }
+      })
+      .catch(() => {
+        responseMsg.textContent = "Hubo un error enviando tu confirmación.";
+      });
+    });
+  }
+
   // Función para iniciar el audio desde 1:30 (90 segundos)
   function startAudioAtPosition() {
     audio.currentTime = 90; // 1:30 = 90 segundos

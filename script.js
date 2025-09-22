@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Función para iniciar el audio desde 0:40 (45 segundos)
   function startAudioAtPosition() {
-    audio.currentTime =45 ; // 0:40 = 45 segundos
+    audio.currentTime = 45; // 0:40 = 45 segundos
     audio.play();
     started = true;
     btn.textContent = '⏸ Pausar música';
